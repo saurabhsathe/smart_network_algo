@@ -22,7 +22,7 @@ def client(stub):
             print(resp)
     return True
 if __name__=="__main__":
-    channel=grpc.aio.insecure_channel('localhost:50051')
+    channel=grpc.insecure_channel('localhost:50051')
     stub=file_transfer_pb2_grpc.CalculatorStub(channel)
     response=client(stub)
     print(response)

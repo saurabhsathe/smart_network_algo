@@ -10,6 +10,7 @@ import file_transfer
 class CalculatorService(file_transfer_pb2_grpc.CalculatorServicer):
     def file_transfer(self, request, context):
         response=file_transfer_pb2.Response()
+
         if file_transfer.file_transfer(request.content):
             response.error=False
             return response
@@ -18,12 +19,12 @@ class CalculatorService(file_transfer_pb2_grpc.CalculatorServicer):
             return response
 
 
-async def serve():
-    server = grpc.aio.server(futures.ThreadPoolExecutor(max_workers=10))
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     file_transfer_pb2_grpc.add_CalculatorServicer_to_server(CalculatorService(),server)
     server.add_insecure_port('[::]:50051')
-    await server.start()
-    await server.wait_for_termination()
+    server.start()
+    server.wait_for_termination()
 
 
-await serve()
+serve()
