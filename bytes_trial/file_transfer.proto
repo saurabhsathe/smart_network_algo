@@ -1,0 +1,14 @@
+syntax="proto3";
+
+message Response{
+  bool ok = 1;
+  bool error = 2;
+}
+
+message Request{
+  int64 chukid =1;
+  bytes content=2;
+}
+service Calculator{
+  rpc file_transfer(Request) returns (Response){}
+}
