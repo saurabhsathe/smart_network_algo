@@ -2,7 +2,7 @@
 
 import file_transfer
 def client():
-    with open("bytes_transfer_main.txt", mode='rb') as file: # b is important -> binary
+    with open("subject102.dat", mode='rb') as file: # b is important -> binary
         chunk_size=100
         def get_data(file):
             while True:
