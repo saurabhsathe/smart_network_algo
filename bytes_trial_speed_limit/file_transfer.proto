@@ -1,0 +1,24 @@
+syntax="proto3";
+
+message Response{
+  bool ok = 1;
+  bool error = 2;
+}
+
+message Request{
+  int64 chukid =1;
+  bytes content=2;
+}
+
+message ServerSpeedResponse{
+  int64 server_mtu=1;
+}
+message ServerSpeedRequest{
+  int64 request =1;
+
+}
+
+service FileTransfer{
+  rpc file_transfer(Request) returns (Response){}
+  rpc ServerResponse(ServerSpeedRequest) returns (ServerSpeedResponse){}
+}
